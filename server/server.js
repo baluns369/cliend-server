@@ -7,7 +7,7 @@ const{MongoClient} = require("mongodb");
 const client = new MongoClient("mongodb://127.0.0.1:27017/");
 const app=http.createServer((req,res)=>{
     //create database//
-    const db =client.db("datas");
+    const db = client.db("datas");
     //create colection//
     const collection =db.collection("doners");
     const path = url.parse(req.url);
@@ -35,9 +35,9 @@ const app=http.createServer((req,res)=>{
         res.writeHead(200,{"Content-Type" : "text/html"});
         res.end(fs.readFileSync("../client/pages/addDoners.html"));
     }
-    if(req.method == "post" && path.pathname == "/submit") {
+    if(req.method == "POST" && path.pathname == "/submit") {
         let body = "";
-        req.on("data",(chunks)=>{
+        req.on("data",(chanks)=>{
             console.log(chanks);
             body+=chanks.toString();
             console.log(body);
